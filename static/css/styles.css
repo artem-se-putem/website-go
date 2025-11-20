@@ -1,0 +1,758 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  background-color: #092722;
+  color: #f5f5dc;
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(60deg, #D5B76E 0%, #D5B76E 40%, #083d2d 40%, #083d2d 100%);
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-area {
+  width: 40%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.logo-img {
+  max-height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #f5f5dc;
+  font-size: 0.9rem;
+  flex: 1;
+  padding-left: 20px;
+}
+
+.phone, .email {
+  color: #f5f5dc;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  margin-left: auto;
+}
+
+.hamburger span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #f5f5dc;
+  transition: all 0.3s ease;
+}
+
+.hamburger:hover span {
+  background-color: #ffffff;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background-color: #0a3d2f;
+  padding: 20px;
+  z-index: 999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu.hidden {
+  display: none;
+}
+
+.mobile-menu a {
+  display: block;
+  color: #f5f5dc;
+  text-decoration: none;
+  padding: 15px 10px;
+  border-bottom: 1px solid rgba(245, 245, 220, 0.1);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  color: #b8935f;
+  padding-left: 20px;
+}
+
+/* Hero Section */
+.hero-section {
+  margin-top: 70px;
+  width: 100%;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Introduction Section */
+.intro-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #f5f5dc;
+}
+
+.intro-box {
+  background-color: #1a6b54;
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.intro-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-text {
+  order: 1;
+}
+
+.intro-image {
+  order: 2;
+}
+
+.intro-text p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.intro-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Games Section */
+.games-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #f5f5dc;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.game-card {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+}
+
+.game-card-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.game-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  color: #f5f5dc;
+  z-index: 3;
+  margin: 0;
+}
+
+.game-arrow-btn-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.game-arrow-btn-bottom img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+  transform: scaleX(-1);
+}
+
+.game-arrow-btn-bottom .arrow-text {
+  display: none;
+  color: #f5f5dc;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.game-card:hover .game-arrow-btn-bottom img {
+  display: none;
+}
+
+.game-card:hover .game-arrow-btn-bottom .arrow-text {
+  display: block;
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(128, 128, 128, 0.7);
+  padding: 25px;
+  padding-top: 70px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+}
+
+.game-card:hover .game-overlay {
+  opacity: 1;
+}
+
+.game-overlay p {
+  color: #f5f5dc;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.btn-primary {
+  background-color: #D5B76E;
+  color: #0d4d3d;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #e0c57f;
+  transform: scale(1.02);
+}
+
+/* Offers Section */
+.offers-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.offer-btn {
+  background-color: #D5B76E;
+  color: #0d4d3d;
+  border: none;
+  padding: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.offer-btn:hover {
+  background-color: #e0c57f;
+  transform: scale(1.02);
+}
+
+/* Club Section */
+.club-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.club-grid-new {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.club-card {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  height: 250px;
+}
+
+.club-card-tall {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.club-card-wide {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  height: 250px;
+}
+
+.club-card-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.club-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.3rem;
+  color: #f5f5dc;
+  z-index: 3;
+  margin: 0;
+}
+
+.club-arrow-btn-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.club-arrow-btn-bottom img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+  transform: scaleX(-1);
+}
+
+.club-arrow-btn-bottom .arrow-text {
+  display: none;
+  color: #f5f5dc;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.club-card:hover .club-arrow-btn-bottom img,
+.club-card-tall:hover .club-arrow-btn-bottom img,
+.club-card-wide:hover .club-arrow-btn-bottom img {
+  display: none;
+}
+
+.club-card:hover .club-arrow-btn-bottom .arrow-text,
+.club-card-tall:hover .club-arrow-btn-bottom .arrow-text,
+.club-card-wide:hover .club-arrow-btn-bottom .arrow-text {
+  display: block;
+}
+
+.club-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(128, 128, 128, 0.7);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.club-card:hover .club-overlay,
+.club-card-tall:hover .club-overlay,
+.club-card-wide:hover .club-overlay {
+  opacity: 1;
+}
+
+.training-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.training-card {
+  background-color: #0F4C43;
+  padding: 30px;
+  padding-bottom: 80px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.training-card .btn-primary {
+  width: auto;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+
+.training-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #f5f5dc;
+}
+
+.training-card ul {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.training-card ul li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #d4d4c8;
+}
+
+.training-card ul li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  color: #b8935f;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.training-card p {
+  margin-bottom: 0;
+  color: #d4d4c8;
+  line-height: 1.8;
+}
+
+.table-booking {
+  background-color: #0F4C43;
+  padding: 30px;
+  padding-bottom: 80px;
+  border-radius: 8px;
+  text-align: left;
+  position: relative;
+}
+
+.table-booking h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #f5f5dc;
+}
+
+.table-booking p {
+  margin-bottom: 0;
+  color: #d4d4c8;
+}
+
+.table-booking .btn-primary {
+  width: auto;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+
+/* Team Section */
+.team-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-carousel {
+  position: relative;
+  padding: 0 50px;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.carousel-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.carousel-btn:hover {
+  opacity: 0.7;
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+}
+
+.team-image-wrapper {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.team-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.team-image-wrapper .btn-primary {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: auto;
+  padding: 10px 25px;
+}
+
+.team-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #f5f5dc;
+  text-align: left;
+}
+
+.team-card p {
+  margin-bottom: 15px;
+  color: #d4d4c8;
+  text-align: left;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-form {
+  background-color: #0a3d2f;
+  padding: 40px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"] {
+  padding: 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #f5f5dc;
+  color: #0d4d3d;
+}
+
+.contact-form input::placeholder {
+  color: #666;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #f5f5dc;
+  font-size: 0.9rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.highlight-text {
+  color: #D5B76E;
+}
+
+.btn-submit {
+  background-color: #D5B76E;
+  color: #ffffff !important;
+  border: none;
+  padding: 15px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #e0c57f;
+  transform: scale(1.02);
+  color: #ffffff !important;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .intro-content {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .intro-text {
+    order: 1;
+  }
+
+  .intro-image {
+    order: 2;
+  }
+
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .offers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .club-grid-new {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .club-card-tall {
+    grid-row: span 2;
+  }
+
+  .club-card-tall {
+    height: 100%;
+  }
+
+  .club-card-tall .club-card-image {
+    height: 100%;
+  }
+
+  .club-card-wide {
+    grid-column: span 2;
+  }
+
+  .training-info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contact-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn-submit {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-title {
+    font-size: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+}
