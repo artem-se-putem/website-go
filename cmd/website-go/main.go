@@ -31,7 +31,7 @@ func main() {
     // Маршруты
     r.Get("/", homeHandler(rootPath))
     r.Get("/about", aboutHandler(rootPath))
-    r.Get("/contact", contactHandler(rootPath))
+    r.Post("/contact", contactHandler(rootPath))
     
     port := os.Getenv("PORT")
     if port == "" {
@@ -67,12 +67,43 @@ func aboutHandler(rootPath string) http.HandlerFunc {
 
 func contactHandler(rootPath string) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
-        data := struct {
-            Title string
-        }{
-            Title: "Контакты",
+        log.Printf("=== ПОЛУЧЕН ЗАПРОС ===")
+        log.Printf("Метод: %s", r.Method)
+        
+        // Парсим форму
+        err := r.ParseForm()
+        if err != nil {
+            log.Printf("❌ Ошибка парсинга: %v", err)
+            http.Error(w, "Ошибка формы", http.StatusBadRequest)
+            return
         }
-        renderTemplate(w, rootPath, "index.html", data)
+        
+        // Логируем ВСЕ что пришло
+        log.Printf("Все данные формы: %v", r.Form)
+        log.Printf("Заголовки: %v", r.Header)
+        
+        // Получаем данные
+        name := r.FormValue("name")
+        email := r.FormValue("email")
+        phone := r.FormValue("phone")
+        agreement := r.FormValue("agreement")
+        
+        log.Printf("name: '%s'", name)
+        log.Printf("email: '%s'", email)
+        log.Printf("phone: '%s'", phone)
+        log.Printf("agreement: '%s'", agreement)
+        
+        // ОБЯЗАТЕЛЬНО отправляем ответ!
+        w.WriteHeader(http.StatusOK)
+        w.Write([]byte(`
+            <html>
+                <body>
+                    <h1>Форма успешно отправлена!</h1>
+                    <p>Мы свяжемся с вами в ближайшее время.</p>
+                    <a href="/">Вернуться на сайт</a>
+                </body>
+            </html>
+        `))
     }
 }
 
