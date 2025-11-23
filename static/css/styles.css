@@ -4,11 +4,26 @@
   box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Bluu Next';
+    src: url('/static/fonts/Bluu Next Cyrillic/Bluu Next Cyrillic.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('/static/fonts/Unbounded/Unbounded-VariableFont_wght.ttf') format('woff');
+    font-weight: 200;
+    font-style: normal;
+} 
+
 body {
-  font-family: Georgia, serif;
-  background-color: #092722;
-  color: #f5f5dc;
-  line-height: 1.6;
+    font-family: 'Bluu Next', sans-serif;
+    font-weight: 300; /* Regular */
+    background-color: #092722;
+    color: white;
+    line-height: 1.6;
 }
 
 html {
@@ -21,12 +36,13 @@ html {
   top: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(60deg, #D5B76E 0%, #D5B76E 40%, #083d2d 40%, #083d2d 100%);
+  background: linear-gradient(60deg, #D5B76E 0%, #D5B76E 70%, #092722 70%, #092722 100%);
   padding: 20px;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 70px; /* Фиксированная высота */
 }
 
 .logo-area {
@@ -34,11 +50,11 @@ html {
   min-height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 150px;
 }
 
 .logo-img {
-  max-height: 60px;
+  max-height: 40px;
   width: auto;
   object-fit: contain;
 }
@@ -50,11 +66,13 @@ html {
   color: #f5f5dc;
   font-size: 0.9rem;
   flex: 1;
-  padding-left: 20px;
+  margin-left: auto; /* Прижимаем к правому краю */
+  margin-right: 5%; /* 20px отступа от правого края */
+  text-align: right;
 }
 
 .phone, .email {
-  color: #f5f5dc;
+  color: #D5B76E;
 }
 
 .hamburger {
@@ -72,7 +90,7 @@ html {
   display: block;
   width: 30px;
   height: 3px;
-  background-color: #f5f5dc;
+  background-color: #D5B76E;
   transition: all 0.3s ease;
 }
 
@@ -110,7 +128,6 @@ html {
   padding-left: 20px;
 }
 
-/* Hero Section */
 .hero-section {
   margin-top: 70px;
   width: 100%;
@@ -118,11 +135,10 @@ html {
 
 .hero-image {
   width: 100%;
-  height: auto;
+  height: 70vh; /* Было 50vh, стало 40vh - уменьшили на 20% */
   display: block;
-  object-fit: contain;
+  object-fit: cover; /* Лучше чем contain для контроля высоты */
 }
-
 /* Introduction Section */
 .intro-section {
   padding: 60px 20px;
@@ -131,6 +147,7 @@ html {
 }
 
 .main-title {
+  font-family: 'Bluu Next', sans-serif;
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 40px;
@@ -138,38 +155,57 @@ html {
 }
 
 .intro-box {
-  background-color: #1a6b54;
+  background-color: #0F4C43;
   border-radius: 8px;
-  padding: 40px;
+  overflow: hidden; /* Важно для border-radius с изображением */
 }
 
 .intro-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
-  align-items: center;
-  position: relative;
-  z-index: 2;
+  align-items: stretch; /* Растягиваем на всю высоту */
+  min-height: 400px; /* Минимальная высота секции */
+}
+
+@media (min-width: 768px) {
+  .intro-content {
+    grid-template-columns: 2fr 1fr; /* Текст 2/3, изображение 1/3 */
+  }
 }
 
 .intro-text {
   order: 1;
+  padding: 20px;
+  padding-left: 40px;
+  /* text-align: justify; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Центрируем текст по вертикали */
 }
 
 .intro-image {
   order: 2;
-}
-
-.intro-text p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  line-height: 1.8;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end; /* Выравниваем содержимое по правому краю */
+  align-items: stretch; /* Растягиваем на всю высоту */
+  background-color: #0F4C43; /* Фон на случай если фото не загрузится */
 }
 
 .intro-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+  width: 100%; /* Занимает всю ширину правой колонки */
+  height: 100%; /* Занимает всю высоту правой колонки */
+  display: block;
+  border-radius: 0 8px 8px 0;
+  /* object-fit: contain; /* ✅ ВАЖНО: не обрезает, сохраняет пропорции */
+  object-position: right center; /* Прижимаем к правому краю */
+}
+
+.intro-text p {
+  font-family: 'Unbounded', sans-serif;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.8;
 }
 
 /* Games Section */
@@ -180,6 +216,7 @@ html {
 }
 
 .section-title {
+  font-family: 'Bluu Next';
   font-size: 2rem;
   text-align: center;
   margin-bottom: 40px;
@@ -196,7 +233,8 @@ html {
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-  height: 400px;
+  height: 600px;
+  /* width: 400px; */
 }
 
 .game-card-image {
@@ -208,6 +246,7 @@ html {
 }
 
 .game-title {
+  font-family: 'Bluu Next';
   position: absolute;
   top: 20px;
   left: 20px;
@@ -219,8 +258,8 @@ html {
 
 .game-arrow-btn-bottom {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 10px;
+  left: 10px;
   background: none;
   border: none;
   cursor: pointer;
@@ -236,7 +275,7 @@ html {
   height: 30px;
   object-fit: contain;
   transition: opacity 0.3s ease;
-  transform: scaleX(-1);
+  /* transform: scaleX(-1); */
 }
 
 .game-arrow-btn-bottom .arrow-text {
@@ -274,9 +313,18 @@ html {
 }
 
 .game-overlay p {
+  font-family: 'Unbounded', sans-serif;
   color: #f5f5dc;
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.game-overlay p li {
+  font-family: 'Unbounded', sans-serif;
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #d4d4c8;
 }
 
 .btn-primary {
@@ -311,10 +359,11 @@ html {
 }
 
 .offer-btn {
+  font-family: 'Unbounded', sans-serif;
   background-color: #D5B76E;
   color: #0d4d3d;
   border: none;
-  padding: 20px;
+  padding: 40px;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 4px;
@@ -371,6 +420,7 @@ html {
 }
 
 .club-title {
+  font-family: 'Bluu Next';
   position: absolute;
   top: 20px;
   left: 20px;
@@ -382,8 +432,8 @@ html {
 
 .club-arrow-btn-bottom {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 10px;
+  left: 10px;
   background: none;
   border: none;
   cursor: pointer;
@@ -399,7 +449,7 @@ html {
   height: 30px;
   object-fit: contain;
   transition: opacity 0.3s ease;
-  transform: scaleX(-1);
+  /* transform: scaleX(-1); */
 }
 
 .club-arrow-btn-bottom .arrow-text {
@@ -472,6 +522,7 @@ html {
 }
 
 .training-card ul li {
+  font-family: 'Unbounded', sans-serif;
   padding: 8px 0;
   padding-left: 25px;
   position: relative;
@@ -489,6 +540,7 @@ html {
 }
 
 .training-card p {
+  font-family: 'Unbounded', sans-serif;
   margin-bottom: 0;
   color: #d4d4c8;
   line-height: 1.8;
@@ -510,6 +562,7 @@ html {
 }
 
 .table-booking p {
+  font-family: 'Unbounded', sans-serif;
   margin-bottom: 0;
   color: #d4d4c8;
 }
@@ -535,16 +588,16 @@ html {
 
 .carousel-btn {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   background: none;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10;
-  padding: 0;
+  /* padding: 20px; */
 }
 
 .carousel-btn img {
@@ -558,18 +611,18 @@ html {
 }
 
 .carousel-btn.prev {
-  left: 0;
+  left: -30px;
 }
 
 .carousel-btn.next {
-  right: 0;
+  right: -30px;
   transform: translateY(-50%) scaleX(-1);
 }
 
 .team-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
+  gap: 100px;
 }
 
 .team-card {
@@ -585,7 +638,7 @@ html {
 
 .team-image-wrapper {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   margin-bottom: 20px;
   position: relative;
@@ -593,7 +646,7 @@ html {
 
 .team-card img {
   width: 100%;
-  height: 300px;
+  height: 400px;
   object-fit: cover;
   display: block;
 }
@@ -607,6 +660,7 @@ html {
 }
 
 .team-card h3 {
+  font-family: 'Bluu Next', sans-serif;
   font-size: 1.3rem;
   margin-bottom: 10px;
   color: #f5f5dc;
@@ -614,10 +668,11 @@ html {
 }
 
 .team-card p {
+  font-family: 'Unbounded', sans-serif;
   margin-bottom: 15px;
   color: #d4d4c8;
   text-align: left;
-}
+} 
 
 /* Contact Section */
 .contact-section {
@@ -627,7 +682,7 @@ html {
 }
 
 .contact-form {
-  background-color: #0a3d2f;
+  background-color: #0F4C43;
   padding: 40px;
   border-radius: 8px;
   display: grid;
@@ -638,6 +693,7 @@ html {
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form input[type="tel"] {
+  font-family: 'Unbounded', sans-serif;
   padding: 15px;
   border: none;
   border-radius: 4px;
@@ -651,6 +707,7 @@ html {
 }
 
 .checkbox-label {
+  font-family: 'Unbounded', sans-serif;
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -666,6 +723,7 @@ html {
 }
 
 .highlight-text {
+  font-family: 'Unbounded', sans-serif;
   color: #D5B76E;
 }
 
@@ -690,7 +748,7 @@ html {
 /* Responsive Design */
 @media (min-width: 768px) {
   .intro-content {
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .intro-text {
@@ -749,10 +807,12 @@ html {
 
 @media (min-width: 1024px) {
   .main-title {
+    font-family: 'Bluu Next';
     font-size: 3rem;
   }
 
   .section-title {
+    font-family: 'Bluu Next';
     font-size: 2.5rem;
   }
 }

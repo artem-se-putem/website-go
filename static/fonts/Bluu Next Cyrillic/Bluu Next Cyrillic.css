@@ -1,0 +1,11 @@
+/* Webfont: BluuNextCyrillic-Bold */@font-face {
+    font-family: 'BluuNextCyrillic';
+    src: url('Bluu Next Cyrillic.eot'); /* IE9 Compat Modes */
+    src: url('Bluu Next Cyrillic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Bluu Next Cyrillic.woff') format('woff'), /* Modern Browsers */
+         url('Bluu Next Cyrillic.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
+
