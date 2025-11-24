@@ -298,18 +298,18 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
       <h2 class="section-title">Обратная связь</h2>
-      <form class="contact-form">
-        <input type="text" placeholder="Ваше имя" required />
-        <input type="email" placeholder="Ваша электронная почта" required />
-        <input type="tel" placeholder="Ваш телефон" required />
-        <label class="checkbox-label">
-          <input type="checkbox" required />
-          <span>
+<form method="POST" action="/contact" class="contact-form" enctype="application/x-www-form-urlencoded">
+    <input type="text" name="name" placeholder="Ваше имя" required />
+    <input type="email" name="email" placeholder="Ваша электронная почта" required />
+    <input type="tel" name="phone" placeholder="Ваш телефон" required />
+    <label class="checkbox-label">
+        <input type="checkbox" name="agreement" required />
+        <span>
             Я прочитал(а) и даю согласие на <span class="highlight-text">обработку персональных данных</span>
-          </span>
-        </label>
-        <button type="submit" class="btn-submit">Отправить</button>
-      </form>
+        </span>
+    </label>
+    <button type="submit" class="btn-submit">Отправить</button>
+</form>
     </section>
 
     <script src="script.js"></script>
